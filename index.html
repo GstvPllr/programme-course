@@ -230,9 +230,9 @@
 <div class="wrap">
 
   <div class="hero">
-    <div class="eyebrow">Ton programme, rien que pour toi</div>
-    <h1 id="heroTitle">Allez cours ma belle !</h1>
-    <p id="heroSubtitle">4 semaines pour te préparer, à ton rythme.</p>
+    <div class="eyebrow">Ton coach Gus, rien que pour toi Hélo</div>
+    <h1 id="heroTitle">Programme de course à pied</h1>
+    <p id="heroSubtitle">11 semaines pour battre ton record au 10km, et prendre du plaisir !</p>
   </div>
 
   <div class="timeline" id="timeline"></div>
@@ -247,74 +247,89 @@
   <div class="panel all-weeks" id="panel-all"></div>
   <div class="panel" id="panel-tips"></div>
 
-  <footer>Fait avec 💛 pour toi</footer>
+  <footer>Fait avec amour pour toi - Coach Gus ❤️</footer>
 </div>
 
 <script>
-/* ============================================================
-   ZONE À MODIFIER — c'est ici et uniquement ici que tu touches
-   pour mettre à jour le programme. Le design n'a pas besoin
-   d'être retouché.
-   ============================================================ */
 
 const PROGRAMME = {
-  heroTitle: "Allez cours ma belle !",
-  heroSubtitle: "4 semaines pour te préparer, à ton rythme.",
+  heroTitle: "Programme de course à pied",
+  heroSubtitle: "11 semaines pour battre ton record au 10km, et prendre du plaisir !",
 
   semaines: [
     {
       numero: 1,
-      dates: "25 – 31 août",
-      objectif: "Reprise en douceur",
+      dates: "7 – 13 septembre",
+      objectif: "On se met dans le bain",
       seances: [
-        { jour: "Lundi", type: "Repos", description: "Pas de course. Étirements ou rien du tout, tu l'as mérité.", repos: true },
-        { jour: "Mercredi", type: "Course facile", description: "20 minutes à allure très cool, on discute en courant.", distance: "3 km env." },
-        { jour: "Samedi", type: "Course facile", description: "25 minutes, toujours à l'aise, on ne force pas.", distance: "3,5 km env." }
+        { jour: "Séance 1", type: "Footing", description: "30 minutes de footing et à la fin 5 lignes droites de 15 secondes en accélération progressive jusqu'à ta vitesse max."},
+        { jour: "Séance 2", type: "Footing longue", description: "60 minutes de footing. Tout simplement." }
       ]
     },
     {
       numero: 2,
-      dates: "1 – 7 septembre",
+      dates: "14 – 20 septembre",
       objectif: "On installe le rythme",
       seances: [
-        { jour: "Mardi", type: "Course facile", description: "25 minutes allure tranquille.", distance: "3,5 km env." },
-        { jour: "Jeudi", type: "Fractionné léger", description: "5 x 2 min un peu plus vite, 2 min marche entre chaque.", distance: "4 km env." },
-        { jour: "Dimanche", type: "Sortie longue", description: "30 minutes en continu, sans regarder le chrono.", distance: "4,5 km env." }
+        { jour: "Séance 1", type: "Footing", description: "40 minutes de footing."},
+        { jour: "Séance 2", type: "Fractionné rapide - 30-30", description: "20min échauffement (footing). Puis 10*[30s-30s]. Soit 30s à vitesse élevée (env. 4min30/km-5min/km) et 30s de repos, 10 fois. Finir par 10-15 min de cooldown."}
       ]
     },
     {
       numero: 3,
-      dates: "8 – 14 septembre",
-      objectif: "On augmente un peu",
+      dates: "21 – 27 septembre",
+      objectif: "On augmente un peu le volume et on profite de l'Ardèche",
       seances: [
-        { jour: "Mardi", type: "Course facile", description: "28 minutes allure confortable.", distance: "4 km env." },
-        { jour: "Jeudi", type: "Fractionné", description: "6 x 2 min soutenu, 90 sec récup.", distance: "4,5 km env." },
-        { jour: "Dimanche", type: "Sortie longue", description: "35 minutes cool, dernier kilomètre un peu plus vif si tu te sens bien.", distance: "5 km env." }
+         { jour: "Séance 1", type: "Footing", description: "45 minutes de footing."},
+         { jour: "Séance 2", type: "Sortie longue vallonée en Ardèche", description: "Le parcours que tu connais, 12km route-trail, à notre rythme !"}
       ]
     },
     {
       numero: 4,
-      dates: "15 – 21 septembre",
-      objectif: "Semaine plaisir",
+      dates: "28 septembre – 4 octobre",
+      objectif: "On augmente l'intensité",
       seances: [
-        { jour: "Mercredi", type: "Course facile", description: "20 minutes cool, on relâche un peu.", distance: "3 km env." },
-        { jour: "Samedi", type: "Sortie longue", description: "30 minutes, parcours au choix, celui que tu préfères.", distance: "4 km env." }
+        { jour: "Séance 1", type: "Footing", description: "35 minutes de footing."},
+        { jour: "Séance 2", type: "Fractionné - travail allure 10 km", description: "20min d'échauffement. 3*1km allure 10k (6min/km), repos 2min entre chaque répétition; 10-15 min de cooldown."}
       ]
-    }
+    }, 
+    {
+      numero: 5,
+      dates: "5 – 11 octobre",
+      objectif: "Objectif Trail Vallée de Joux !",
+      seances: [
+        { jour: "Séance 1", type: "Footing", description: "30 minutes de footing."},
+        { jour: "Séance 2", type: "Trail 22k Vallée de Joux", description: "En gros tu montes le Mont Tendre et tu redescends, à ton rythme !"}
+      ]
+    },
+    {
+      numero: 6,
+      dates: "12 – 18 octobre",
+      objectif: "On calme l'intensité mais on garde du volume !",
+      seances: [
+        { jour: "Séance 1", type: "Footing", description: "20 minutes de footing."},
+        { jour: "Séance 2", type: "Footing", description: "30 minutes de footing et à la fin 5 lignes droites de 15 secondes en accélération progressive jusqu'à ta vitesse max."}
+        { jour: "Séance 3", type: "Fractionné - endurance longue", description: "20 minutes de footing."},
+      ]
+    }, 
+    {
+      numero: 7,
+      dates: "19 – 25 octobre",
+      objectif: "La grosse semaine de travail (et de plaisir)",
+      seances: [
+        { jour: "Séance 1", type: "Footing", description: "30 minutes de footing."},
+        { jour: "Séance 2", type: "Trail 22k Vallée de Joux", description: "En gros tu montes le Mont Tendre et tu redescends, à ton rythme !"}
+      ]
+    },
   ],
 
   conseils: [
-    { emoji: "💧", texte: "Bois un grand verre d'eau environ 1h avant de courir, pas juste avant." },
-    { emoji: "👟", texte: "Si tes chaussures ont plus de 500-600 km au compteur, c'est peut-être le moment d'y penser." },
-    { emoji: "🐢", texte: "Sur les sorties 'faciles', si tu n'arrives pas à discuter en courant, c'est que tu vas trop vite." },
-    { emoji: "🧘", texte: "5 minutes d'étirements après chaque séance, ça change tout sur la durée." },
-    { emoji: "🌙", texte: "Un jour de repos raté ne casse rien. L'objectif c'est la régularité, pas la perfection." }
+    { emoji: "🐢", texte: "Sur les sorties footing, il n' y a aucun rythme imposé. Tu dois être à l'aise pour parler. Si tu veux/dois marcher un peu tu peux !" },
+    { emoji: "🚀", texte: "Avant les séances de fractionné, échauffe toi bien. Quelques accélérations, montées de genoux et talons-fesses pour préparer le corps à l'effort." },
+    { emoji: "🌙", texte: "Si une semaine tu n'es pas dans le mood, ce n'est pas grave. Remplace un fractionné par un footing de durée équivalente." },
+    { emoji: "🫶", texte: "Si une semaine tu n'es VRAIMENT pas dans le mood, ce n'est pas grave. Appelle juste coach-copain Gus. On trouvera une solution !" }
   ]
 };
-
-/* ============================================================
-   FIN DE LA ZONE À MODIFIER
-   ============================================================ */
 
 function parseFirstDate(datesStr, refYear){
   const jourMois = datesStr.split("–")[0].trim();
