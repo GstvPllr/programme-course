@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ton programme de course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #EEF1FB;
+    --card: #FFFFFF;
+    --ink: #23264D;
+    --ink-soft: #5A5D82;
+    --coral: #FF6B5B;
+    --coral-dark: #C4402F;
+    --mint: #3FA98A;
+    --mint-bg: #DFF3EC;
+    --sun: #FFC857;
+    --sun-bg: #FFF3D9;
+    --line: #DCE0F5;
+    --radius: 18px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Figtree', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:640px;
+    margin:0 auto;
+    padding:32px 20px 80px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    text-align:center;
+    padding:28px 12px 8px;
+  }
+  .hero .eyebrow{
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--coral-dark);
+  }
+  .hero h1{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:38px;
+    line-height:1.15;
+    margin:8px 0 6px;
+  }
+  .hero p{
+    color:var(--ink-soft);
+    font-size:15px;
+    margin:0;
+  }
+
+  /* ---------- TIMELINE (signature element) ---------- */
+  .timeline{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:0;
+    margin:28px 0 8px;
+    overflow-x:auto;
+    padding:8px 4px;
+  }
+  .tl-node{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+    position:relative;
+    flex-shrink:0;
+  }
+  .tl-dot{
+    width:34px;height:34px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:700;
+    border:2px solid var(--line);
+    background:var(--card);
+    color:var(--ink-soft);
+    transition:transform .15s ease;
+  }
+  .tl-dot.done{ background:var(--mint); border-color:var(--mint); color:#fff; }
+  .tl-dot.current{ background:var(--coral); border-color:var(--coral); color:#fff; box-shadow:0 0 0 5px var(--sun-bg); transform:scale(1.08); }
+  .tl-label{ font-size:11px; color:var(--ink-soft); font-weight:600; }
+  .tl-connector{ width:26px; height:2px; background:var(--line); flex-shrink:0; margin-top:-20px; }
+
+  /* ---------- NAV BUTTONS ---------- */
+  .nav{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin:28px 0 24px;
+  }
+  .nav button{
+    font-family:'Figtree', sans-serif;
+    font-weight:600;
+    font-size:14px;
+    color:var(--ink);
+    background:var(--card);
+    border:1.5px solid var(--line);
+    border-radius:14px;
+    padding:14px 8px;
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .nav button:hover{ border-color:var(--coral); }
+  .nav button.active{
+    background:var(--ink);
+    border-color:var(--ink);
+    color:#fff;
+  }
+
+  /* ---------- PANELS ---------- */
+  .panel{ display:none; }
+  .panel.active{ display:block; animation:fade .25s ease; }
+  @keyframes fade{ from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);} }
+
+  .week-card{
+    background:var(--card);
+    border-radius:var(--radius);
+    padding:22px 22px 8px;
+    margin-bottom:18px;
+    border:1px solid var(--line);
+  }
+  .week-card h2{
+    font-family:'Fraunces', serif;
+    font-size:22px;
+    font-weight:600;
+    margin:0 0 2px;
+  }
+  .week-card .range{
+    font-size:13px;
+    color:var(--ink-soft);
+    margin-bottom:4px;
+  }
+  .week-card .focus{
+    display:inline-block;
+    font-size:12px;
+    font-weight:600;
+    color:var(--coral-dark);
+    background:#FFEBE8;
+    padding:4px 10px;
+    border-radius:20px;
+    margin-bottom:16px;
+  }
+
+  .session{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:14px 0;
+    border-top:1px solid var(--line);
+  }
+  .session:first-of-type{ border-top:none; }
+  .session .day{
+    width:64px;
+    flex-shrink:0;
+    font-size:12px;
+    font-weight:700;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    padding-top:2px;
+  }
+  .session .content{ flex:1; }
+  .session .content strong{
+    display:block;
+    font-size:15px;
+    margin-bottom:2px;
+  }
+  .session .content span{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+  .session .badge{
+    display:inline-block;
+    font-size:11px;
+    font-weight:700;
+    padding:2px 8px;
+    border-radius:20px;
+    background:var(--mint-bg);
+    color:var(--mint);
+    margin-top:6px;
+  }
+  .session.rest .badge{ background:var(--sun-bg); color:#A67300; }
+
+  .check-btn{
+    width:30px;height:30px;
+    flex-shrink:0;
+    border-radius:50%;
+    border:2px solid var(--line);
+    background:#fff;
+    color:var(--mint);
+    font-weight:700;
+    font-size:15px;
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:all .15s ease;
+  }
+  .check-btn:hover{ border-color:var(--mint); }
+  .check-btn.done{ background:var(--mint); border-color:var(--mint); color:#fff; }
+  .session.completed .content strong,
+  .session.completed .content span{
+    text-decoration:line-through;
+    color:var(--ink-soft);
+  }
+
+  /* Séance vedette (course finale) */
+  .session.feature{
+    background:linear-gradient(135deg, #FFF4EA, #FFE3CC);
+    border:1.5px solid #FF8A3D;
+    border-radius:14px;
+    padding:16px 14px;
+    margin:6px 0;
+  }
+  .session.feature .day{ color:#C4550E; }
+  .session.feature .content strong{ color:#C4550E; font-size:16px; }
+  .session.feature .check-btn{ border-color:#FF8A3D; color:#FF8A3D; }
+  .session.feature .check-btn.done{ background:#FF8A3D; border-color:#FF8A3D; color:#fff; }
+
+  .all-weeks .week-card{ cursor:default; }
+  .all-weeks h2{ font-size:18px; }
+
+  .tips{
+    display:grid;
+    gap:12px;
+  }
+  .tip-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px 18px;
+    font-size:14px;
+    line-height:1.55;
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+  }
+  .tip-card .emoji{ font-size:20px; }
+
+  .section-title{
+    font-family:'Fraunces', serif;
+    font-size:17px;
+    font-weight:600;
+    margin:28px 0 12px;
+  }
+  .section-title:first-child{ margin-top:4px; }
+
+  .pace-grid{
+    display:grid;
+    gap:10px;
+  }
+  .pace-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:14px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+  }
+  .pace-card .label{ font-size:14px; font-weight:600; }
+  .pace-card .sub{ font-size:12px; color:var(--ink-soft); margin-top:2px; }
+  .pace-card .value{
+    font-family:'Fraunces', serif;
+    font-size:18px;
+    font-weight:600;
+    color:var(--coral-dark);
+    white-space:nowrap;
+  }
+
+  /* Onglet love */
+  .love-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:28px 20px 32px;
+    text-align:center;
+  }
+  .love-card img{
+    width:100%;
+    max-width:360px;
+    border-radius:16px;
+    margin-bottom:20px;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .love-card h2{
+    font-family:'Fraunces', serif;
+    font-size:30px;
+    font-weight:600;
+    margin:0;
+  }
+
+  footer{
+    text-align:center;
+    margin-top:36px;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+
+  @media (max-width:420px){
+    .hero h1{ font-size:30px; }
+    .nav button{ font-size:12.5px; padding:12px 4px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="eyebrow">Ton coach Gus, rien que pour toi Hélo</div>
+    <h1 id="heroTitle">Programme de course à pied</h1>
+    <p id="heroSubtitle">11 semaines pour battre ton record au 10km, et prendre du plaisir !</p>
+  </div>
+
+  <div class="timeline" id="timeline"></div>
+
+  <div class="nav">
+    <button data-panel="week" class="active">Cette semaine</button>
+    <button data-panel="all">Vue d'ensemble</button>
+    <button data-panel="tips">Conseils et rythmes</button>
+    <button data-panel="love">Info pas liée à la course</button>
+  </div>
+
+  <div class="panel active" id="panel-week"></div>
+  <div class="panel all-weeks" id="panel-all"></div>
+  <div class="panel" id="panel-tips"></div>
+  <div class="panel" id="panel-love"></div>
+
+  <footer>Fait avec amour pour toi - Coach Gus ❤️</footer>
+</div>
+
+
+<script>
+
+const PROGRAMME = {
+  heroTitle: "Programme de course à pied",
+  heroSubtitle: "11 semaines pour battre ton record au 10km, et prendre du plaisir !",
+
+  semaines: [
+    {
+      numero: 1,
+      dates: "7 – 13 septembre",
+      objectif: "On se met dans le bain !",
+      seances: [
+        { jour: "Séance 1", type: "Footing", description: "30 minutes de footing et à la fin 5 lignes droites de 15 secondes en accélération progressive jusqu'à ta vitesse max."},
+        { jour: "Séance 2", type: "Footing long", description: "60 minutes de footing." }
+      ]
+    },
+    {
+      numero: 2,
+      dates: "14 – 20 septembre",
+      objectif: "On installe le rythme",
+      seances: [
+        { jour: "Séance 1", type: "Footing", description: "40 minutes de footing."},
+        { jour: "Séance 2", type: "Fractionné - Vitesse", description: "20min échauffement. 10*[30s-30s]. Soit 30s à vitesse élevée (env. 4min30/km-5min/km) et 30s de repos, 10 fois. Finir par 10-15 min de cooldown."}
+      ]
+    },
+    {
+      numero: 3,
+      dates: "21 – 27 septembre",
+      objectif: "On augmente un peu le volume et on profite de l'Ardèche.",
+      seances: [
+         { jour: "Séance 1", type: "Footing", description: "45 minutes de footing."},
+         { jour: "Séance 2", type: "Sortie longue vallonée en Ardèche", description: "Le parcours que tu connais, 12km route-trail, à notre rythme !"}
+      ]
+    },
+    {
+      numero: 4,
+      dates: "28 septembre – 4 octobre",
+      objectif: "On augmente l'intensité.",
+      seances: [
+        { jour: "Séance 1", type: "Footing", description: "35 minutes de footing."},
+        { jour: "Séance 2", type: "Fractionné - allure 10 km", description: "20min d'échauffement. 3*1km allure 10k (6min/km), repos 2min entre chaque répétition; 10-15 min de cooldown."}
+      ]
+    }, 
+    {
+      numero: 5,
+      dates: "5 – 11 octobre",
+      objectif: "Objectif Trail Vallée de Joux !",
+      seances: [
+        { jour: "Séance 1", type: "Footing", description: "30 minutes de footing."},
+        { jour: "Séance 2", type: "Trail 22k Vallée de Joux", description: "En gros tu montes le Mont Tendre et tu redescends, à ton rythme !"}
+      ]
+    },
+    {
+      numero: 6,
+      dates: "12 – 18 octobre",
+      objectif: "On garde du volume !",
+      seances: [
+        { jour: "Séance 1", type: "Footing", description: "20 minutes de footing."},
+        { jour: "Séance 2", type: "Footing", description: "30 minutes de footing et à la fin 5 lignes droites de 15 secondes en accélération progressive jusqu'à ta vitesse max."},
+        { jour: "Séance 3", type: "Fractionné - endurance longue", description: "20min d'échauffement. 2*3km allure 10k (6min/km), repos 2min entre les 2 répétitions. 10-15 min de cooldown."}
+      ]
+    }, 
+    {
+      numero: 7,
+      dates: "19 – 25 octobre",
+      objectif: "La grosse semaine de travail (et de plaisir)",
+      seances: [
+        { jour: "Séance 1", type: "Footing", description: "20 minutes de footing."},
+        { jour: "Séance 2", type: "Footing long", description: "65 minutes de footing."},
+        { jour: "Séance 3", type: "Fractionné - allure 10km", description: "20min déchauffement. Pyramide allure 10km : 200-400-800-1600-800-400-200m. 10-15min de cooldown."}
+      ]
+    },
+    {
+      numero: 8,
+      dates: "26 octobre – 1er novembre",
+      objectif: "On apprend à relancer quand c'est dur",
+      seances: [
+        { jour: "Séance 1", type: "Footing", description: "20 minutes de footing."},
+        { jour: "Séance 2", type: "Footing", description: "40 minutes de footing."},
+        { jour: "Séance 3", type: "Fractionné - en côte", description: "20min d'échauffement. 6-8*effort soutenu sur 300-500m de distance, repos dans la descente. 10-15 min de cooldown."}
+      ]
+    },
+    {
+      numero: 9,
+      dates: "2 – 8 novembre",
+      objectif: "Le retour à 2 séances. On diminue un peu le volume pour que le corps se repose.",
+      seances: [
+        { jour: "Séance 1", type: "Footing", description: "45 minutes de footing."},
+        { jour: "Séance 2", type: "Fractionné - vitesse", description: "20min d'échauffement. 10*400m à 5min/km, repos 1min30 entre chaque répétition. 10-15 min de cooldown."}
+      ]
+    },
+    {
+      numero: 10,
+      dates: "9 – 15 novembre",
+      objectif: "On garde le corps actif mais il doit se reposer.",
+      seances: [
+        { jour: "Séance 1", type: "Footing", description: "40 minutes de footing."},
+        { jour: "Séance 2", type: "Fractionné - allure 10km", description: "20min déchauffement. 4km allure 10km, sans repos. 10-15min de cooldown."}
+      ]
+    },
+    {
+      numero: 11,
+      dates: "16 - 22 novembre",
+      objectif: "Dernière semaine. T'es juste née pour briller.",
+      seances: [
+        { jour: "Séance 1", type: "Footing", description: "30 minutes de footing."},
+        { jour: "Séance 2", type: "Activation", description: "20 minutes de footing et à la fin 5 lignes droites de 15 secondes en accélération progressive jusqu'à ta vitesse max."},
+        { jour: "Séance finale", type: "COURSE", description: "59min59s pour faire 10km", special: true }
+      ]
+    }
+  ],
+
+  conseils: [
+    { emoji: "🐢", texte: "Sur les sorties footing, il n' y a aucun rythme imposé. Tu dois être à l'aise pour parler. Si tu veux/dois marcher un peu tu peux !" },
+    { emoji: "🚀", texte: "Avant les séances de fractionné, échauffe toi bien. Quelques accélérations, des gammes, montées de genoux et talons-fesses pour préparer le corps à l'effort." },
+    { emoji: "🌙", texte: "Si une semaine tu n'es pas dans le mood, ce n'est pas grave. Remplace un fractionné par un footing de durée équivalente." },
+    { emoji: "🫶", texte: "Si une semaine tu n'es VRAIMENT pas dans le mood, ce n'est pas grave. Appelle juste coach-copain Gus. On trouvera une solution !" }
+  ],
+
+  rythmes: [
+    { label: "Allure cible 10 km", sous: "Objectif en fin de préparation", valeur: "5:59 / km" },
+    { label: "Allure max en footing", sous: "Ne pas dépasser sur les sorties faciles", valeur: "6:30 / km" },
+    { label: "Allure fractionné", sous: "Répétitions de 100 m à 800 m", valeur: "4:30 - 5:30 / km" }
+  ],
+
+  love: {
+    photo: "notre-photo.jpg",
+    message: "Je t'aime"
+  }
+};
+
+function parseFirstDate(datesStr, refYear){
+  const jourMois = datesStr.split("–")[0].trim();
+  const mois = {"janvier":0,"février":1,"mars":2,"avril":3,"mai":4,"juin":5,"juillet":6,"août":7,"septembre":8,"octobre":9,"novembre":10,"décembre":11};
+  const parts = jourMois.split(" ");
+  const jour = parseInt(parts[0], 10);
+  const moisNom = (datesStr.match(/[a-zéû]+$/i) || datesStr.split(" "))[0];
+  const moisTrouve = Object.keys(mois).find(m => datesStr.toLowerCase().includes(m));
+  return new Date(refYear, mois[moisTrouve] ?? 0, jour || 1);
+}
+
+function getCurrentWeekIndex(){
+  const today = new Date();
+  const year = today.getFullYear();
+  let idx = 0;
+  for(let i=0;i<PROGRAMME.semaines.length;i++){
+    const start = parseFirstDate(PROGRAMME.semaines[i].dates, year);
+    if(today >= start) idx = i;
+  }
+  return idx;
+}
+
+document.getElementById("heroTitle").textContent = PROGRAMME.heroTitle;
+document.getElementById("heroSubtitle").textContent = PROGRAMME.heroSubtitle;
+
+const currentIndex = getCurrentWeekIndex();
+
+/* Sauvegarde des séances validées, dans le navigateur uniquement */
+const STORAGE_KEY = "programme-course-seances-validees";
+function loadDone(){
+  try{ return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+  catch(e){ return {}; }
+}
+function saveDone(map){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(map));
+}
+const doneMap = loadDone();
+
+function toggleDone(key){
+  doneMap[key] = !doneMap[key];
+  saveDone(doneMap);
+  document.querySelectorAll(`[data-key="${key}"]`).forEach(el => {
+    if(el.classList.contains("session")) el.classList.toggle("completed", doneMap[key]);
+    if(el.classList.contains("check-btn")){
+      el.classList.toggle("done", doneMap[key]);
+      el.textContent = doneMap[key] ? "✓" : "";
+    }
+  });
+}
+
+document.addEventListener("click", e => {
+  if(e.target.classList.contains("check-btn")){
+    toggleDone(e.target.dataset.key);
+  }
+});
+
+/* Timeline */
+const tl = document.getElementById("timeline");
+PROGRAMME.semaines.forEach((s, i) => {
+  const node = document.createElement("div");
+  node.className = "tl-node";
+  const dot = document.createElement("div");
+  dot.className = "tl-dot" + (i < currentIndex ? " done" : i === currentIndex ? " current" : "");
+  dot.textContent = s.numero;
+  const label = document.createElement("div");
+  label.className = "tl-label";
+  label.textContent = "S" + s.numero;
+  node.appendChild(dot);
+  node.appendChild(label);
+  tl.appendChild(node);
+  if(i < PROGRAMME.semaines.length - 1){
+    const connector = document.createElement("div");
+    connector.className = "tl-connector";
+    tl.appendChild(connector);
+  }
+});
+
+/* Panel: cette semaine */
+function renderWeekCard(semaine){
+  const div = document.createElement("div");
+  div.className = "week-card";
+  div.innerHTML = `
+    <h2>Semaine ${semaine.numero}</h2>
+    <div class="range">${semaine.dates}</div>
+    <div class="focus">${semaine.objectif}</div>
+    ${semaine.seances.map((s, idxS) => {
+      const key = "w" + semaine.numero + "-" + idxS;
+      const isDone = !!doneMap[key];
+      const classes = ["session"];
+      if(s.repos) classes.push("rest");
+      if(s.special) classes.push("feature");
+      if(isDone) classes.push("completed");
+      return `
+      <div class="${classes.join(" ")}" data-key="${key}">
+        <div class="day">${s.jour}</div>
+        <div class="content">
+          <strong>${s.special ? "🏆 " : ""}${s.type}</strong>
+          <span>${s.description}</span>
+          ${s.distance ? `<div class="badge">${s.distance}</div>` : ""}
+        </div>
+        ${s.repos ? "" : `<button class="check-btn ${isDone ? "done" : ""}" data-key="${key}" aria-label="Valider la séance">${isDone ? "✓" : ""}</button>`}
+      </div>
+    `;
+    }).join("")}
+  `;
+  return div;
+}
+
+document.getElementById("panel-week").appendChild(renderWeekCard(PROGRAMME.semaines[currentIndex]));
+
+/* Panel: vue d'ensemble */
+const allPanel = document.getElementById("panel-all");
+PROGRAMME.semaines.forEach(s => allPanel.appendChild(renderWeekCard(s)));
+
+/* Panel: conseils et rythmes */
+const tipsPanel = document.getElementById("panel-tips");
+tipsPanel.innerHTML = `
+  <div class="section-title">Rythmes indicatifs</div>
+  <div class="pace-grid">
+    ${PROGRAMME.rythmes.map(r => `
+      <div class="pace-card">
+        <div>
+          <div class="label">${r.label}</div>
+          <div class="sub">${r.sous}</div>
+        </div>
+        <div class="value">${r.valeur}</div>
+      </div>
+    `).join("")}
+  </div>
+
+  <div class="section-title">Conseils</div>
+  <div class="tips">
+    ${PROGRAMME.conseils.map(c => `
+      <div class="tip-card"><div class="emoji">${c.emoji}</div><div>${c.texte}</div></div>
+    `).join("")}
+  </div>
+`;
+
+/* Panel: info pas liée à la course */
+const lovePanel = document.getElementById("panel-love");
+lovePanel.innerHTML = `
+  <div class="love-card">
+    <img src="${PROGRAMME.love.photo}" alt="Notre photo" onerror="this.style.display='none'">
+    <h2>${PROGRAMME.love.message}</h2>
+  </div>
+`;
+
+/* Navigation */
+document.querySelectorAll(".nav button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".nav button").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById("panel-" + btn.dataset.panel).classList.add("active");
+  });
+});
+</script>
+</body>
+</html>
