@@ -81,7 +81,7 @@
     flex-shrink:0;
   }
   .tl-dot{
-    width:30px;height:30px;
+    width:26px;height:26px;
     border-radius:50%;
     display:flex;align-items:center;justify-content:center;
     font-size:13px;font-weight:700;
@@ -93,7 +93,7 @@
   .tl-dot.done{ background:var(--mint); border-color:var(--mint); color:#fff; }
   .tl-dot.current{ background:var(--coral); border-color:var(--coral); color:#fff; box-shadow:0 0 0 5px var(--sun-bg); transform:scale(1.08); }
   .tl-label{ font-size:11px; color:var(--ink-soft); font-weight:600; }
-  .tl-connector{ width:16px; height:2px; background:var(--line); flex-shrink:0; margin-top:-20px; }
+  .tl-connector{ width:10px; height:2px; background:var(--line); flex-shrink:0; margin-top:-20px; }
 
   /* ---------- NAV BUTTONS ---------- */
   .nav{
@@ -367,7 +367,7 @@ const PROGRAMME = {
       objectif: "On installe le rythme.",
       seances: [
         { jour: "Séance 1", type: "Footing", description: "40 minutes de footing."},
-        { jour: "Séance 2", type: "Fractionné - Vitesse", description: "20min échauffement. 10*[30s-30s]. Soit 30s à vitesse élevée (env. 4min30/km-5min/km) et 30s de repos, 10 fois. Finir par 10-15 min de cooldown."}
+        { jour: "Séance 2", type: "Fractionné - Vitesse", description: "20 min échauffement. 10*[30s-30s]. Soit 30s à vitesse élevée (env. 4min30/km-5min/km) et 30s de repos, 10 fois. Finir par 10-15 min de cooldown."}
       ]
     },
     {
@@ -385,7 +385,7 @@ const PROGRAMME = {
       objectif: "On augmente l'intensité.",
       seances: [
         { jour: "Séance 1", type: "Footing", description: "35 minutes de footing."},
-        { jour: "Séance 2", type: "Fractionné - allure 10 km", description: "20min d'échauffement. 3*1km allure 10k (6min/km), repos 2min entre chaque répétition; 10-15 min de cooldown."}
+        { jour: "Séance 2", type: "Fractionné - allure 10 km", description: "20 min d'échauffement. 3*1km allure 10k (6min/km), repos 2min entre chaque répétition; 10-15 min de cooldown."}
       ]
     }, 
     {
@@ -394,7 +394,7 @@ const PROGRAMME = {
       objectif: "Objectif Trail Vallée de Joux !",
       seances: [
         { jour: "Séance 1", type: "Footing", description: "30 minutes de footing."},
-        { jour: "Séance 2", type: "Trail 22k Vallée de Joux", description: "En gros tu montes le Mont Tendre et tu redescends, à ton rythme !"}
+        { jour: "Séance 2", type: "Trail 22k Vallée de Joux", description: "En gros tu montes le Mont Tendre et tu redescends, à ton rythme ! Coach Gus devrait être dans les parages..."}
       ]
     },
     {
@@ -404,7 +404,7 @@ const PROGRAMME = {
       seances: [
         { jour: "Séance 1", type: "Footing", description: "20 minutes de footing."},
         { jour: "Séance 2", type: "Footing", description: "30 minutes de footing et à la fin 5 lignes droites de 15 secondes en accélération progressive jusqu'à ta vitesse max."},
-        { jour: "Séance 3", type: "Fractionné - endurance longue", description: "20min d'échauffement. 2*3km allure 10k (6min/km), repos 2min entre les 2 répétitions. 10-15 min de cooldown."}
+        { jour: "Séance 3", type: "Fractionné - endurance longue", description: "20 min d'échauffement. 2*3km allure 10k (6min/km), repos 2min entre les 2 répétitions. 10-15 min de cooldown."}
       ]
     }, 
     {
@@ -414,7 +414,7 @@ const PROGRAMME = {
       seances: [
         { jour: "Séance 1", type: "Footing", description: "20 minutes de footing."},
         { jour: "Séance 2", type: "Footing long", description: "65 minutes de footing."},
-        { jour: "Séance 3", type: "Fractionné - allure 10km", description: "20min déchauffement. Pyramide allure 10km : 200-400-800-1600-800-400-200m. 10-15min de cooldown."}
+        { jour: "Séance 3", type: "Fractionné - allure 10km", description: "20 min déchauffement. Pyramide allure 10km : 200-400-800-1600-800-400-200m. 10-15min de cooldown."}
       ]
     },
     {
@@ -424,7 +424,7 @@ const PROGRAMME = {
       seances: [
         { jour: "Séance 1", type: "Footing", description: "20 minutes de footing."},
         { jour: "Séance 2", type: "Footing", description: "40 minutes de footing."},
-        { jour: "Séance 3", type: "Fractionné - en côte", description: "20min d'échauffement. 6-8*effort soutenu sur 300-500m de distance, repos dans la descente. 10-15 min de cooldown."}
+        { jour: "Séance 3", type: "Fractionné - en côte", description: "20 min d'échauffement. 6-8*effort soutenu sur 300-500m de distance, repos dans la descente. 10-15 min de cooldown."}
       ]
     },
     {
@@ -433,7 +433,7 @@ const PROGRAMME = {
       objectif: "Le retour à 2 séances. On diminue un peu le volume pour que le corps se repose.",
       seances: [
         { jour: "Séance 1", type: "Footing", description: "45 minutes de footing."},
-        { jour: "Séance 2", type: "Fractionné - vitesse", description: "20min d'échauffement. 10*400m à 5min/km, repos 1min30 entre chaque répétition. 10-15 min de cooldown."}
+        { jour: "Séance 2", type: "Fractionné - vitesse", description: "20 min d'échauffement. 10*400m à 5min/km, repos 1min30 entre chaque répétition. 10-15 min de cooldown."}
       ]
     },
     {
@@ -442,7 +442,7 @@ const PROGRAMME = {
       objectif: "On garde le corps actif mais il doit se reposer.",
       seances: [
         { jour: "Séance 1", type: "Footing", description: "40 minutes de footing."},
-        { jour: "Séance 2", type: "Fractionné - allure 10km", description: "20min déchauffement. 4km allure 10km, sans repos. 10-15min de cooldown."}
+        { jour: "Séance 2", type: "Fractionné - allure 10km", description: "20 min d'échauffement. 4km allure 10km, sans repos. 10-15min de cooldown."}
       ]
     },
     {
@@ -458,7 +458,7 @@ const PROGRAMME = {
   ],
 
   conseils: [
-    { emoji: "🐢", texte: "Sur les sorties footing, il n' y a aucun rythme imposé. Tu dois être à l'aise pour parler. Si tu veux/dois marcher un peu tu peux !" },
+    { emoji: "🐢", texte: "Sur les sorties footing, il n'y a aucun rythme imposé. Tu dois être à l'aise pour parler. Si tu veux/dois marcher un peu tu peux !" },
     { emoji: "🚀", texte: "Avant les séances de fractionné, échauffe toi bien. Quelques accélérations, des gammes, montées de genoux et talons-fesses pour préparer le corps à l'effort." },
     { emoji: "🛏️", texte: "Ecoute ton corps, si tu as besoin de repos et des douleurs il ne faut pas forcer. Evidemment toujours bien manger, bien dormir, bien boire (de l'eau)." },
     { emoji: "🌙", texte: "Si une semaine tu n'es pas dans le mood, ce n'est pas grave. Remplace un fractionné par un footing de durée équivalente." },
@@ -469,7 +469,7 @@ const PROGRAMME = {
   rythmes: [
     { label: "Allure cible 10 km", sous: "Objectif en fin de préparation", valeur: "5:59 / km" },
     { label: "Allure max en footing", sous: "Ne pas dépasser sur les sorties faciles", valeur: "6:30 / km" },
-    { label: "Allure fractionné", sous: "Répétitions de 100 m à 800 m", valeur: "4:30 - 5:30 / km" }
+    { label: "Allure fractionné", sous: "Pour les répétitions de 100 m à 800 m", valeur: "4:30 - 5:30 / km" }
   ],
 
   love: {
