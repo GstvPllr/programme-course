@@ -260,10 +260,10 @@ const PROGRAMME = {
     {
       numero: 1,
       dates: "7 – 13 septembre",
-      objectif: "On se met dans le bain",
+      objectif: "On se met dans le bain !",
       seances: [
         { jour: "Séance 1", type: "Footing", description: "30 minutes de footing et à la fin 5 lignes droites de 15 secondes en accélération progressive jusqu'à ta vitesse max."},
-        { jour: "Séance 2", type: "Footing long", description: "60 minutes de footing. Tout simplement." }
+        { jour: "Séance 2", type: "Footing long", description: "60 minutes de footing." }
       ]
     },
     {
@@ -272,13 +272,13 @@ const PROGRAMME = {
       objectif: "On installe le rythme",
       seances: [
         { jour: "Séance 1", type: "Footing", description: "40 minutes de footing."},
-        { jour: "Séance 2", type: "Fractionné rapide - 30-30", description: "20min échauffement (footing). Puis 10*[30s-30s]. Soit 30s à vitesse élevée (env. 4min30/km-5min/km) et 30s de repos, 10 fois. Finir par 10-15 min de cooldown."}
+        { jour: "Séance 2", type: "Fractionné - Vitesse", description: "20min échauffement. 10*[30s-30s]. Soit 30s à vitesse élevée (env. 4min30/km-5min/km) et 30s de repos, 10 fois. Finir par 10-15 min de cooldown."}
       ]
     },
     {
       numero: 3,
       dates: "21 – 27 septembre",
-      objectif: "On augmente un peu le volume et on profite de l'Ardèche",
+      objectif: "On augmente un peu le volume et on profite de l'Ardèche.",
       seances: [
          { jour: "Séance 1", type: "Footing", description: "45 minutes de footing."},
          { jour: "Séance 2", type: "Sortie longue vallonée en Ardèche", description: "Le parcours que tu connais, 12km route-trail, à notre rythme !"}
@@ -287,10 +287,10 @@ const PROGRAMME = {
     {
       numero: 4,
       dates: "28 septembre – 4 octobre",
-      objectif: "On augmente l'intensité",
+      objectif: "On augmente l'intensité.",
       seances: [
         { jour: "Séance 1", type: "Footing", description: "35 minutes de footing."},
-        { jour: "Séance 2", type: "Fractionné - travail allure 10 km", description: "20min d'échauffement. 3*1km allure 10k (6min/km), repos 2min entre chaque répétition; 10-15 min de cooldown."}
+        { jour: "Séance 2", type: "Fractionné - allure 10 km", description: "20min d'échauffement. 3*1km allure 10k (6min/km), repos 2min entre chaque répétition; 10-15 min de cooldown."}
       ]
     }, 
     {
@@ -305,11 +305,11 @@ const PROGRAMME = {
     {
       numero: 6,
       dates: "12 – 18 octobre",
-      objectif: "On calme l'intensité mais on garde du volume !",
+      objectif: "On garde du volume !",
       seances: [
         { jour: "Séance 1", type: "Footing", description: "20 minutes de footing."},
         { jour: "Séance 2", type: "Footing", description: "30 minutes de footing et à la fin 5 lignes droites de 15 secondes en accélération progressive jusqu'à ta vitesse max."},
-        { jour: "Séance 3", type: "Fractionné - endurance longue", description: "20min d'échauffement. 2*3km allure 10k (6min/km), repos 2min entre les 2 répétitions. 10-15 min de cooldown.."}
+        { jour: "Séance 3", type: "Fractionné - endurance longue", description: "20min d'échauffement. 2*3km allure 10k (6min/km), repos 2min entre les 2 répétitions. 10-15 min de cooldown."}
       ]
     }, 
     {
@@ -319,14 +319,52 @@ const PROGRAMME = {
       seances: [
         { jour: "Séance 1", type: "Footing", description: "20 minutes de footing."},
         { jour: "Séance 2", type: "Footing long", description: "65 minutes de footing."},
-        { jour: "Séance 3", type: "Fractionné - travail de vitesse", description: "20min d'échauffement. 10*400m. 10-15 min de cooldown.."}
+        { jour: "Séance 3", type: "Fractionné - allure 10km", description: "20min déchauffement. Pyramide allure 10km : 200-400-800-1600-800-400-200m. 10-15min de cooldown."}
       ]
     },
+    {
+      numero: 8,
+      dates: "26 octobre – 1er novembre",
+      objectif: "On apprend à relancer quand c'est dur",
+      seances: [
+        { jour: "Séance 1", type: "Footing", description: "20 minutes de footing."},
+        { jour: "Séance 2", type: "Footing", description: "40 minutes de footing."},
+        { jour: "Séance 3", type: "Fractionné - en côte", description: "20min d'échauffement. 6-8*effort soutenu sur 300-500m de distance, repos dans la descente. 10-15 min de cooldown."}
+      ]
+    },
+    {
+      numero: 9,
+      dates: "2 – 8 novembre",
+      objectif: "Le retour à 2 séances. On diminue un peu le volume pour que le corps se repose.",
+      seances: [
+        { jour: "Séance 1", type: "Footing", description: "45 minutes de footing."},
+        { jour: "Séance 2", type: "Fractionné - vitesse", description: "20min d'échauffement. 10*400m à 5min/km, repos 1min30 entre chaque répétition. 10-15 min de cooldown."}
+      ]
+    },
+    {
+      numero: 10,
+      dates: "9 – 15 novembre",
+      objectif: "On garde le corps actif mais il doit se reposer.",
+      seances: [
+        { jour: "Séance 1", type: "Footing", description: "40 minutes de footing."},
+        { jour: "Séance 2", type: "Fractionné - allure 10km", description: "20min déchauffement. 4km allure 10km, sans repos. 10-15min de cooldown."}
+      ]
+    },
+    {
+      numero: 11,
+      dates: "16 - 22 novembre",
+      objectif: "Dernière semaine. T'es juste née pour briller.",
+      seances: [
+        { jour: "Séance 1", type: "Footing", description: "30 minutes de footing."},
+        { jour: "Séance 2", type: "Activation", description: "20 minutes de footing et à la fin 5 lignes droites de 15 secondes en accélération progressive jusqu'à ta vitesse max."},
+        { jour: "Séance finale", type: "COURSE", description: "59min59s pour faire 10km"}
+      ]
+    }
   ],
 
   conseils: [
     { emoji: "🐢", texte: "Sur les sorties footing, il n' y a aucun rythme imposé. Tu dois être à l'aise pour parler. Si tu veux/dois marcher un peu tu peux !" },
-    { emoji: "🚀", texte: "Avant les séances de fractionné, échauffe toi bien. Quelques accélérations, montées de genoux et talons-fesses pour préparer le corps à l'effort." },
+    { emoji: "🚀", texte: "Avant les séances de fractionné, échauffe toi bien. Quelques accélérations, des gammes, montées de genoux et talons-fesses pour préparer le corps à l'effort." },
     { emoji: "🌙", texte: "Si une semaine tu n'es pas dans le mood, ce n'est pas grave. Remplace un fractionné par un footing de durée équivalente." },
     { emoji: "🫶", texte: "Si une semaine tu n'es VRAIMENT pas dans le mood, ce n'est pas grave. Appelle juste coach-copain Gus. On trouvera une solution !" }
   ]
