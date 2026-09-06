@@ -62,38 +62,27 @@
     margin:0;
   }
 
-  /* ---------- TIMELINE (signature element) ---------- */
-  .timeline{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:0;
-    margin:28px 0 8px;
-    overflow-x:auto;
-    padding:8px 4px;
-  }
-  .tl-node{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:6px;
-    position:relative;
-    flex-shrink:0;
-  }
-  .tl-dot{
-    width:26px;height:26px;
-    border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    font-size:13px;font-weight:700;
-    border:2px solid var(--line);
-    background:var(--card);
-    color:var(--ink-soft);
-    transition:transform .15s ease;
-  }
-  .tl-dot.done{ background:var(--mint); border-color:var(--mint); color:#fff; }
-  .tl-dot.current{ background:var(--coral); border-color:var(--coral); color:#fff; box-shadow:0 0 0 5px var(--sun-bg); transform:scale(1.08); }
-  .tl-label{ font-size:11px; color:var(--ink-soft); font-weight:600; }
-  .tl-connector{ width:10px; height:2px; background:var(--line); flex-shrink:0; margin-top:-20px; }
+  /* ---------- TIMELINE (barre de progression) ---------- */
+.week-label{
+  text-align:center;
+  font-size:13px;
+  font-weight:600;
+  color:var(--ink-soft);
+  margin:24px 0 8px;
+}
+.timeline{
+  display:flex;
+  gap:4px;
+  margin:0 0 8px;
+}
+.tl-seg{
+  flex:1;
+  height:8px;
+  border-radius:4px;
+  background:var(--line);
+}
+.tl-seg.done{ background:var(--mint); }
+.tl-seg.current{ background:var(--coral); box-shadow:0 0 0 3px var(--sun-bg); }
 
   /* ---------- NAV BUTTONS ---------- */
   .nav{
@@ -326,7 +315,7 @@
     <h1 id="heroTitle">Programme de course à pied</h1>
     <p id="heroSubtitle">11 semaines pour battre ton record au 10km, et prendre du plaisir !</p>
   </div>
-
+  <div class="week-label" id="weekLabel"></div>
   <div class="timeline" id="timeline"></div>
 
   <div class="nav">
@@ -534,24 +523,14 @@ document.addEventListener("click", e => {
 });
 
 /* Timeline */
+document.getElementById("weekLabel").textContent =
+  "Semaine " + PROGRAMME.semaines[currentIndex].numero + " sur " + PROGRAMME.semaines.length;
+
 const tl = document.getElementById("timeline");
 PROGRAMME.semaines.forEach((s, i) => {
-  const node = document.createElement("div");
-  node.className = "tl-node";
-  const dot = document.createElement("div");
-  dot.className = "tl-dot" + (i < currentIndex ? " done" : i === currentIndex ? " current" : "");
-  dot.textContent = s.numero;
-  const label = document.createElement("div");
-  label.className = "tl-label";
-  label.textContent = "S" + s.numero;
-  node.appendChild(dot);
-  node.appendChild(label);
-  tl.appendChild(node);
-  if(i < PROGRAMME.semaines.length - 1){
-    const connector = document.createElement("div");
-    connector.className = "tl-connector";
-    tl.appendChild(connector);
-  }
+  const seg = document.createElement("div");
+  seg.className = "tl-seg" + (i < currentIndex ? " done" : i === currentIndex ? " current" : "");
+  tl.appendChild(seg);
 });
 
 /* Panel: cette semaine */
